@@ -1,0 +1,8 @@
+<launch>
+  <node type="ov2slam_node" name="ov2slam_node" pkg="ov2slam" args="$(find ov2slam)/parameters_files/average/kitti/kitti_00-02-kitti_2011_09_26_drive_0002_synced.yaml"/> 
+  <node type="rviz" name="rviz" pkg="rviz" args="-d $(find ov2slam)/ov2slam_visualization.rviz"/>
+  <arg name="kittiPath" default="/home/ubuntu20/Installations/"/>
+  <arg name="driveFile" default="kitti_2011_09_26_drive_0002_synced"/>
+  <node type="play" name="player" pkg="rosbag" output="screen" args="--clock $(arg kittiPath)$(arg driveFile).bag"/>
+  <node type="rqt_graph" name="rqt_graph" pkg="rqt_graph"/>
+</launch>
